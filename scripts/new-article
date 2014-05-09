@@ -1,0 +1,36 @@
+#!/bin/bash -x
+
+name=$1
+description=$2
+#description="Dette er en sej ny artikel"
+TITLE=$3
+#TITLE="Ny artikel om et eller andet"
+
+
+#cd /Library/WebServer/Documents/per/articles
+cd ~/Sites/per/articles/
+
+echo >> .htaccess "AddDescription \"$description\" $name"
+
+mkdir $name
+cd $name
+cat > .htaccess <<EOF
+DirectoryIndex $name.php
+EOF
+
+cat > $name.php <<EOF
+<?php require_once ('../../php/functions.php');
+
+page_header(
+	array(
+        'title' => 'Per Møldrup-Dalum | Articles', 
+	    'header' => 'PER MØLDRUP-DALUM', 
+		'stylesheets' => array('../../css/main.css')));
+?>
+
+<h1>$TITLE</h1>
+[BODY]
+<?php page_footer(true);?>
+EOF
+
+open ../$name
