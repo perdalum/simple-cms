@@ -2,10 +2,13 @@
 
 name=$1
 description=$2
+#description="Dette er en sej ny artikel"
 TITLE=$3
+#TITLE="Ny artikel om et eller andet"
 
 
-cd /Library/WebServer/Documents/per/articles
+#cd /Library/WebServer/Documents/per/articles
+cd ~/Sites/per/articles/
 
 echo >> .htaccess "AddDescription \"$description\" $name"
 
